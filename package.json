@@ -1,6 +1,7 @@
 {
   "name": "starwars",
   "private": true,
+  "homepage": "https://sujeesh-Lal.github.io/starwars",
   "version": "0.0.0",
   "type": "module",
   "scripts": {
