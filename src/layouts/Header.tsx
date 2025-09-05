@@ -1,7 +1,15 @@
 import React from "react";
-import { NavLink } from "react-router-dom";
+import { NavLink, useLocation } from "react-router-dom";
 
 const HeaderComponent: React.FC = () => {
+  const location = useLocation();
+
+  const handleClick = (e: React.MouseEvent) => {
+    const path = location.pathname;
+    if (path === "/" || path === "/characters") {
+      e.preventDefault(); // This is now testable
+    }
+  };
   return (
     <>
       <header className="fixed top-0 left-0 right-0 h-16 bg-blue-600 text-white flex items-center px-4 shadow z-10">
@@ -15,10 +23,7 @@ const HeaderComponent: React.FC = () => {
                   : "text-white/80 hover:text-white"
               }`
             }
-            onClick={(e) => {
-              if (location.pathname === "/characters" || location.pathname === "/")
-                e.preventDefault();
-            }}
+            onClick={handleClick}
           >
             Characters
           </NavLink>

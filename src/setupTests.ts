@@ -1,4 +1,6 @@
 import "@testing-library/jest-dom";
+import "whatwg-fetch";
+
 import { TextEncoder, TextDecoder } from "util";
 
 // Patch globalThis for Jest (JSDOM)

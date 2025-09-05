@@ -4,7 +4,7 @@ const FooterComponent: React.FC = () => {
   return (
     <>
       <footer className="bg-gray-800 text-white p-4">
-        <p>Footer © 2025</p>
+        <p data-testid="footer-p">Footer © 2025</p>
       </footer>
     </>
   );

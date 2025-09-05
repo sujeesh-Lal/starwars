@@ -18,6 +18,15 @@ const config: Config = {
     "^@utils/(.*)$": "<rootDir>/src/utils/$1",
     "^@styles/(.*)$": "<rootDir>/src/styles/$1",
   },
+  collectCoverage: true, // enable coverage collection
+  collectCoverageFrom: [
+    "src/**/*.{ts,tsx}", // include all TS/TSX files in src
+    "!src/**/*.d.ts", // exclude type definitions
+    "!src/index.tsx", // optionally exclude main entry
+    "!src/reportWebVitals.ts", // optionally exclude CRA default files
+  ],
+  coverageDirectory: "coverage", // output folder
+  coverageReporters: ["text", "lcov", "html"], // reports format
   setupFilesAfterEnv: ["<rootDir>/src/setupTests.ts"],
 };
 

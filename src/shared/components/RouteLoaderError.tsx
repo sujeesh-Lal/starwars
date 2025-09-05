@@ -6,18 +6,20 @@ const RouteLoaderError: React.FC = () => {
   if (isRouteErrorResponse(error)) {
     return (
       <div className="p-4 text-red-700">
-        <h2 className="text-lg font-bold">
+        <h2 data-testid="rle-error-status" className="text-lg font-bold">
           Error {error.status} - {error.data}
         </h2>
-        <p>{error.statusText}</p>
+        <p data-testid="rle-status-test">{error.statusText}</p>
       </div>
     );
   }
 
   return (
     <div className="p-4 text-red-700">
-      <h2 className="text-lg font-bold">Unexpected Error</h2>
-      <p>{String(error)}</p>
+      <h2 data-testid="rle-unexpected-error" className="text-lg font-bold">
+        Unexpected Error
+      </h2>
+      <p data-testid="rle-p-error">{String(error)}</p>
     </div>
   );
 };
