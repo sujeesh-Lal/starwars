@@ -6,23 +6,22 @@ import NotFound from "@/shared/components/NotFound";
 import { planetsLoader } from "@/home/services/planetsLoader";
 import RouteLoaderError from "@/shared/components/RouteLoaderError";
 
-export const router = createBrowserRouter([
+export const router = createBrowserRouter(
+  [
+    {
+      path: "/",
+      element: <AppLayout />, // common layout
+      loader: planetsLoader,
+      errorElement: <RouteLoaderError />,
+      children: [
+        { index: true, element: <Characters /> }, // default route "/"
+        { path: "favorites", element: <Favorites /> },
+        { path: "characters", element: <Characters /> },
+        { path: "*", element: <NotFound /> }, // catch-all
+      ],
+    },
+  ],
   {
-    path: "/",
-    element: <AppLayout />, // common layout
-    loader: planetsLoader,
-    errorElement: <RouteLoaderError />,
-    children: [
-      { index: true, element: <Characters /> }, // default route "/"
-      {
-        path: "favorites",
-        element: <Favorites />,
-      },
-      {
-        path: "characters",
-        element: <Characters />, // shows the list or left panel
-      },
-      { path: "*", element: <NotFound /> }, // catch-all
-    ],
+    basename: "/starwars", // ✅ set basename here, not inside the route
   },
-]);
+);
