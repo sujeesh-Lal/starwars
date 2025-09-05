@@ -41,7 +41,7 @@ jobs:
         id: upload
         uses: actions/upload-pages-artifact@v3
         with:
-          path: ./build # CRA default. For Vite use ./dist
+          path: ./dist # CRA default. For Vite use ./dist
 
   deploy:
     needs: build
