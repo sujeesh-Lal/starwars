@@ -1,2 +1,8 @@
+@use "sass:meta";
+@use "variables";
 @use "tailwindcss";
+
 @import "primereact/resources/themes/lara-light-cyan/theme.css";
+
+@include meta.load-css("typography");
+@include meta.load-css("base");
