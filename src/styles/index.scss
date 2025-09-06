@@ -5,5 +5,13 @@
 @import "primereact/resources/themes/lara-light-blue/theme.css";
 @import "primeicons/primeicons.css";
 
+@font-face {
+  font-family: "PrimeIcons";
+  src:
+    url("primeicons/fonts/primeicons.woff2") format("woff2"),
+    url("primeicons/fonts/primeicons.woff") format("woff"),
+    url("primeicons/fonts/primeicons.ttf") format("truetype");
+}
+
 @include meta.load-css("typography");
 @include meta.load-css("base");
