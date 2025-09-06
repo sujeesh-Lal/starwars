@@ -56,22 +56,18 @@ describe("CharacterTable component", () => {
 
     render(<CharacterTable loading={false} data={mockData} handleClick={handleClick} />);
 
-    // Get all pencil icons (edit) and eye icons (view)
-    // const editButtons = screen
-    //   .getAllByRole("button", { hidden: true })
-    //   .filter((el) => el.querySelector(".pi-pencil"));
-    // const viewButtons = screen
-    //   .getAllByRole("button", { hidden: true })
-    //   .filter((el) => el.querySelector(".pi-eye"));
-
     // PrimeReact DataTable renders spans, so let's query spans with class
-    const editSpans = screen.getAllByText(
-      (content, element) => !!element && element.className.includes("pi-pencil"),
-    );
+    const editSpans = screen.getAllByText((content, element) => {
+      if (content) {
+      }
+      return !!element && element.className.includes("pi-pencil");
+    });
 
-    const viewSpans = screen.getAllByText(
-      (content, element) => !!element && element.className.includes("pi-eye"),
-    );
+    const viewSpans = screen.getAllByText((content, element) => {
+      if (content) {
+      }
+      return !!element && element.className.includes("pi-eye");
+    });
 
     // Click first edit and view buttons
     fireEvent.click(editSpans[0]);

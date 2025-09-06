@@ -38,13 +38,7 @@ jest.mock("./CharactersTable", () => ({
 }));
 
 jest.mock("@home/components/CharacterSearch", () => ({
-  CharacterSearch: ({
-    search,
-    handleClick,
-  }: {
-    search: string;
-    handleClick: (id: string) => void;
-  }) => (
+  CharacterSearch: ({ search }: { search: string; handleClick: (id: string) => void }) => (
     <div data-testid="character-search">
       <span>{search}</span>
     </div>
@@ -88,6 +82,8 @@ describe("CharacterItems component", () => {
   };
 
   const renderWithStore = (preloadedState?: any) => {
+    if (preloadedState) {
+    }
     const store = configureStore({
       reducer: { people: peopleReducer }, // slice name
       preloadedState: {
