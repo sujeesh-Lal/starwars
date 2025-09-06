@@ -3,6 +3,7 @@ import { useSelector } from "react-redux";
 import type { RootState } from "@/app/store";
 import type { FlattenedPerson } from "@/shared/types/peopleTypes";
 import CharacterTable from "./CharactersTable";
+import { findCharactersByText } from "@home/services/Characters";
 
 interface CharacterSearchProps {
   search: string;
@@ -11,18 +12,18 @@ interface CharacterSearchProps {
 
 export const CharacterSearch: React.FC<CharacterSearchProps> = ({ search, handleClick }) => {
   const { data, loadingPeople } = useSelector((state: RootState) => state.people);
-  const findCharactersByText = (
-    data: Record<string, FlattenedPerson[]>,
-    text: string,
-  ): FlattenedPerson[] => {
-    const q = text.trim().toLowerCase();
-    if (!q) {
-      return Object.values(data).flat();
-    }
-    return Object.values(data)
-      .flat()
-      .filter((person) => person.name.toLowerCase().includes(q));
-  };
+  // const findCharactersByText = (
+  //   data: Record<string, FlattenedPerson[]>,
+  //   text: string,
+  // ): FlattenedPerson[] => {
+  //   const q = text.trim().toLowerCase();
+  //   if (!q) {
+  //     return Object.values(data).flat();
+  //   }
+  //   return Object.values(data)
+  //     .flat()
+  //     .filter((person) => person.name.toLowerCase().includes(q));
+  // };
 
   // filter by search text
   const filtered = () => {

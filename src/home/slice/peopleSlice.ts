@@ -6,9 +6,9 @@ import {
   type FlattenedPerson,
   type PeopleListResponse,
 } from "@shared/types/peopleTypes";
-import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
-// import axios from 'axios';
+import { createSlice, createAsyncThunk, type PayloadAction } from "@reduxjs/toolkit";
 import axiosInstance from "@shared/services/axiosInstance";
+import { findCharacterLocation, flattenPeoplesData } from "@home/services/Characters";
 
 // Async thunk
 export const fetchPeople = createAsyncThunk<
@@ -45,7 +45,15 @@ export const fetchPeople = createAsyncThunk<
 const peopleSlice = createSlice({
   name: "people",
   initialState,
-  reducers: {},
+  reducers: {
+    updatePeople: (state, action: PayloadAction<FlattenedPerson>) => {
+      const characterDetails = findCharacterLocation(state.data, action.payload.id);
+      if (characterDetails?.page && characterDetails.index !== null) {
+        const { page, index } = characterDetails;
+        state.data[page][index] = action.payload;
+      }
+    },
+  },
   extraReducers: (builder) => {
     builder
       .addCase(fetchPeople.pending, (state, action) => {
@@ -80,24 +88,5 @@ const peopleSlice = createSlice({
   },
 });
 
-const flattenPeoplesData = (data: PeopleListResponse): FlattenedPerson[] => {
-  const results = data.results?.map((r) => {
-    const p = r.properties;
-    return {
-      id: r.uid,
-      name: p.name,
-      gender: p.gender,
-      hair_color: p.hair_color,
-      height: p.height,
-      eye_color: p.eye_color,
-      mass: p.mass,
-      url: p.url,
-      homeworld: p.homeworld,
-      films: p.films,
-      starships: p.starships,
-    };
-  });
-  return results;
-};
-
+export const { updatePeople } = peopleSlice.actions;
 export default peopleSlice.reducer;

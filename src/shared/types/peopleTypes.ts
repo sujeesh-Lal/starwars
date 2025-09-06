@@ -21,9 +21,10 @@ export interface PersonProperties {
   mass: string;
   url: string;
   eye_color: string;
-  homeworld: string; 
-  films: string[]; 
+  homeworld: string;
+  films: string[];
   starships: string[];
+  favorite?: boolean;
 }
 
 export type FlattenedPerson = PersonProperties & { id: string };
@@ -39,20 +40,18 @@ export interface FlattenedPeopleListResponse {
 
 export interface PeopleDataState {
   data: Record<string, FlattenedPerson[]>;
-  pagesLoaded: string[];  
+  pagesLoaded: string[];
   total_records: number;
   total_pages: number;
   previous: string | null;
-  next: string | null; 
+  next: string | null;
   loadingPeople: boolean;
   errorPeople: string | null;
 }
 
-
 // Initial state
 export const initialState: PeopleDataState = {
-  data: {
-  },
+  data: {},
   total_records: 0,
   total_pages: 0,
   previous: null,
@@ -61,7 +60,6 @@ export const initialState: PeopleDataState = {
   loadingPeople: false,
   errorPeople: null,
 };
-
 
 export interface FetchPeopleParams {
   page: string;

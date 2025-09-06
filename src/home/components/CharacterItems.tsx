@@ -53,7 +53,6 @@ const CharacterItems: React.FC = () => {
     <div className="p-4">
       <h1 className="text-xl font-bold mb-2">Starwars Characters</h1>
 
-      {loadingPeople && <p>Loading…</p>}
       {errorPeople && <p className="text-red-500">{errorPeople}</p>}
       <div className="mt-4 mb-4">
         <input

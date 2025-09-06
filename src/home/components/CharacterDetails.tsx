@@ -4,6 +4,7 @@ import type { RootState } from "@app/store";
 import { useLocation, useNavigate, useParams } from "react-router-dom";
 import type { FlattenedPerson } from "@/shared/types/peopleTypes";
 import CharacterInfo from "@home/components/CharacterInfo";
+import { findCharacterById } from "@home/services/Characters";
 
 const CharacterDetails: React.FC = () => {
   const { id } = useParams<{ id: string }>();
@@ -11,15 +12,6 @@ const CharacterDetails: React.FC = () => {
   const navigate = useNavigate();
   const location = useLocation() as {
     state?: { fromPage?: string; search: string; firstRecord: number; currentRow: number };
-  };
-
-  const findCharacterById = (
-    data: Record<string, FlattenedPerson[]>,
-    id: string | undefined,
-  ): FlattenedPerson | undefined => {
-    return Object.values(data)
-      .flat()
-      .find((person) => person.id === id);
   };
 
   const character: FlattenedPerson | undefined = findCharacterById(data, id);
@@ -42,7 +34,9 @@ const CharacterDetails: React.FC = () => {
 
   return (
     <div>
-      <CharacterInfo {...character} />
+      <div className="max-w-md rounded-2xl border border-gray-200 bg-white shadow-md hover:shadow-lg transition-shadow duration-200 p-5">
+        <CharacterInfo character={character} />
+      </div>
       <section className="mt-4">
         <div onClick={backToList}>back to list</div>
       </section>

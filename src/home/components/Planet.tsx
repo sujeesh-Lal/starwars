@@ -1,5 +1,5 @@
 import React from "react";
-import { findPlanetByUrl } from "@home/services/findPlanets";
+import { findPlanetByUrl } from "@/home/services/Planets";
 import { useSelector } from "react-redux";
 import type { RootState } from "@/app/store";
 
