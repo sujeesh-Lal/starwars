@@ -5,6 +5,8 @@ import { useLocation, useNavigate, useParams } from "react-router-dom";
 import type { FlattenedPerson } from "@/shared/types/peopleTypes";
 import CharacterInfo from "@home/components/CharacterInfo";
 import { findCharacterById } from "@home/services/Characters";
+// import FilmList from "@home/components/FilmList";
+// import StarshipList from "@home/components/StarshipList";
 
 const CharacterDetails: React.FC = () => {
   const { id } = useParams<{ id: string }>();
@@ -36,6 +38,13 @@ const CharacterDetails: React.FC = () => {
     <div>
       <div className="max-w-md rounded-2xl border border-gray-200 bg-white shadow-md hover:shadow-lg transition-shadow duration-200 p-5">
         <CharacterInfo character={character} />
+
+        {/* <FilmList
+                character={character}
+            />
+            <StarshipList
+                character={character}
+            /> */}
       </div>
       <section className="mt-4">
         <div onClick={backToList}>back to list</div>

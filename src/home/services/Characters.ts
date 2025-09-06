@@ -3,23 +3,28 @@ import type { FlattenedPerson, PeopleListResponse } from "@/shared/types/peopleT
 export const findCharacterById = (
   data: Record<string, FlattenedPerson[]>,
   id: string | undefined,
-): FlattenedPerson | undefined => {
-  return Object.values(data)
-    .flat()
-    .find((person) => person.id === id);
-};
+): FlattenedPerson | undefined =>
+  Object.keys(data)
+    .reduce<FlattenedPerson[]>((acc, k) => acc.concat(data[k]), [])
+    .find((p) => p.id === id);
 
 export const findCharactersByText = (
   data: Record<string, FlattenedPerson[]>,
   text: string,
 ): FlattenedPerson[] => {
   const q = text.trim().toLowerCase();
-  if (!q) {
-    return Object.values(data).flat();
+  const result: FlattenedPerson[] = [];
+
+  for (const key of Object.keys(data)) {
+    const people = data[key];
+    for (const person of people) {
+      if (!q || person.name.toLowerCase().includes(q)) {
+        result.push(person);
+      }
+    }
   }
-  return Object.values(data)
-    .flat()
-    .filter((person) => person.name.toLowerCase().includes(q));
+
+  return result;
 };
 
 export const flattenPeoplesData = (data: PeopleListResponse): FlattenedPerson[] => {
@@ -46,11 +51,15 @@ export const findCharacterLocation = (
   data: Record<string, FlattenedPerson[]>,
   id: string,
 ): { page: string; index: number } | null => {
-  for (const [page, people] of Object.entries(data)) {
+  const pages = Object.keys(data);
+
+  for (const page of pages) {
+    const people = data[page];
     const idx = people.findIndex((p) => p.id === id);
     if (idx !== -1) {
       return { page, index: idx };
     }
   }
+
   return null;
 };

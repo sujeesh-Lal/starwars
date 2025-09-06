@@ -47,6 +47,32 @@ const CharacterInfoComponent: React.FC<CharacterInfoProps> = ({ character }) => 
           <Planet planetUrl={character.homeworld} />
         </span>
       </div>
+
+      {/* Films */}
+      {/* {films?.length > 0 && (
+        <div className="mb-3">
+          <h3 className="text-sm font-semibold text-gray-700 mb-1">Films:</h3>
+          <ul className="list-disc list-inside text-sm text-gray-600">
+            {films.map((film) => (
+              <li key={film}>{film}</li>
+            ))}
+          </ul>
+        </div>
+      )} */}
+
+      {/* Starships */}
+      {/* {starships?.length > 0 && (
+        <div className="mb-2">
+          <h3 className="text-sm font-semibold text-gray-700 mb-1">
+            Starships:
+          </h3>
+          <ul className="list-disc list-inside text-sm text-gray-600">
+            {starships.map((ship) => (
+              <li key={ship}>{ship}</li>
+            ))}
+          </ul>
+        </div>
+      )} */}
     </>
   );
 };

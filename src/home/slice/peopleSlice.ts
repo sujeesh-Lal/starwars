@@ -19,7 +19,7 @@ export const fetchPeople = createAsyncThunk<
   try {
     const state = thunkAPI.getState();
 
-    if (state.people.pagesLoaded.includes(page)) {
+    if (state.people.pagesLoaded?.indexOf(page) !== -1) {
       // return cached data instantly
       return thunkAPI.fulfillWithValue({
         page,
@@ -60,7 +60,7 @@ const peopleSlice = createSlice({
         const page = action.meta.arg.page ?? "1";
 
         // Skip loading if already cached
-        if (state.pagesLoaded.includes(page)) return;
+        if (state.pagesLoaded?.indexOf(page) !== -1) return;
 
         state.loadingPeople = true;
         state.errorPeople = null;
@@ -72,8 +72,8 @@ const peopleSlice = createSlice({
         state.data[page] = people;
 
         // mark page as loaded
-        if (!state.pagesLoaded.includes(page)) {
-          state.pagesLoaded.push(page);
+        if (state.pagesLoaded?.indexOf(page) === -1) {
+          state.pagesLoaded?.push(page);
         }
         state.total_pages = action.payload.total_pages;
         state.total_records = action.payload.total_records;
