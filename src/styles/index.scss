@@ -3,6 +3,7 @@
 @use "tailwindcss";
 
 @import "primereact/resources/themes/lara-light-blue/theme.css";
+@import "primeicons/primeicons.css";
 
 @include meta.load-css("typography");
 @include meta.load-css("base");
