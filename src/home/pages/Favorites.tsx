@@ -11,7 +11,7 @@ import { updatePeople } from "../slice/peopleSlice";
 const Favorites: React.FC = () => {
   const dispatch = useDispatch<AppDispatch>();
 
-  const { data, loadingPeople } = useSelector((state: RootState) => state.people);
+  const { data } = useSelector((state: RootState) => state.people);
   const favorites = () => {
     return findCharactersByKey(data, { favorite: true }) as FlattenedPerson[];
   };
