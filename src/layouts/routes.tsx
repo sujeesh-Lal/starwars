@@ -24,6 +24,6 @@ export const router = createBrowserRouter(
     },
   ],
   {
-    basename: "/starwars", // ✅ set basename here, not inside the route
+    basename: "/starwars/",
   },
 );
