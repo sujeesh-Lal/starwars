@@ -1,9 +1,10 @@
-import React from "react";
+import React, { useMemo } from "react";
 import { useSelector } from "react-redux";
 import type { RootState } from "@/app/store";
 import type { FlattenedPerson } from "@/shared/types/peopleTypes";
 import CharacterTable from "./CharactersTable";
 import { findCharactersByText } from "@home/services/Characters";
+import { useDebounce } from "@/shared/hooks";
 
 interface CharacterSearchProps {
   search: string;
@@ -12,15 +13,14 @@ interface CharacterSearchProps {
 
 export const CharacterSearch: React.FC<CharacterSearchProps> = ({ search, handleClick }) => {
   const { data, loadingPeople } = useSelector((state: RootState) => state.people);
-  // filter by search text
-  const filtered = () => {
-    const q = search.trim().toLowerCase();
+  const debouncedSearch = useDebounce(search, 500);
+  const filteredData = useMemo(() => {
+    const q = debouncedSearch.trim().toLowerCase();
     if (!q) return [];
 
     return findCharactersByText(data, q) as FlattenedPerson[];
-  };
+  }, [debouncedSearch, data]);
 
-  const filteredData = filtered();
   return (
     <>
       <div className="mt-4 mb-4">

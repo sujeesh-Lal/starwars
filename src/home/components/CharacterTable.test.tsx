@@ -2,7 +2,6 @@ import { render, screen, fireEvent } from "@testing-library/react";
 import type { FlattenedPerson } from "@/shared/types/peopleTypes";
 import CharacterTable from "@home/components/CharactersTable";
 
-// Mock the Planet component
 jest.mock("@/home/components/Planet", () => ({
   Planet: ({ planetUrl }: { planetUrl: string }) => <span data-testid="planet">{planetUrl}</span>,
 }));
@@ -40,11 +39,9 @@ describe("CharacterTable component", () => {
   it("renders all rows and Planet components", () => {
     render(<CharacterTable loading={false} data={mockData} handleClick={jest.fn()} />);
 
-    // Check that each character name is displayed
     expect(screen.getByText("Luke Skywalker")).toBeInTheDocument();
     expect(screen.getByText("C-3PO")).toBeInTheDocument();
 
-    // Planet component should render for each row
     const planets = screen.getAllByTestId("planet");
     expect(planets.length).toBe(2);
     expect(planets[0]).toHaveTextContent("https://swapi/planets/1");
@@ -79,6 +76,8 @@ describe("CharacterTable component", () => {
 
   it("renders loading state when loading is true", () => {
     render(<CharacterTable loading={true} data={[]} handleClick={jest.fn()} />);
-    expect(document.querySelector(".p-datatable-loading-overlay")).toBeInTheDocument();
+    const loadingWrapper = screen.getByTestId("loading-wrapper");
+    expect(loadingWrapper).toBeInTheDocument();
+    // expect(document.querySelector("#loading-wrapper")).toBeInTheDocument();
   });
 });

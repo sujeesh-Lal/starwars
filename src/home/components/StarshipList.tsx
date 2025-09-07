@@ -1,46 +1,26 @@
-import type { AppDispatch, RootState } from "@/app/store";
-import React, { useEffect, useState } from "react";
-import { useDispatch, useSelector } from "react-redux";
+import type { RootState } from "@/app/store";
+import React from "react";
+import { useSelector } from "react-redux";
 import { fetchStarshipById } from "@home/slice/starshipSlice";
 import type { FlattenedPerson } from "@/shared/types/peopleTypes";
 import { ProgressSpinner } from "primereact/progressspinner";
 import { getStarshipModels } from "@home/services/Starship";
+import { useFetchItems } from "@home/hooks/useFetchItems";
 
 interface StarshipListProps {
   character: FlattenedPerson;
 }
 
 const StarshipList: React.FC<StarshipListProps> = ({ character }) => {
-  const dispatch = useDispatch<AppDispatch>();
   const { starshipItems, loadingStarship, errorStarship } = useSelector(
     (state: RootState) => state.starships,
   );
-  const [starshipLoaded, setStarshipLoaded] = useState(false);
+  const starshipLoaded = useFetchItems({
+    items: character?.starships,
+    fetchById: fetchStarshipById,
+  });
 
   const starshipModels = getStarshipModels(character, starshipItems);
-
-  useEffect(() => {
-    if (!character?.starships?.length) return;
-    setStarshipLoaded(false);
-    (async () => {
-      try {
-        for (const starshipUrl of character.starships) {
-          const parts = starshipUrl.replace(/\/$/, "").split("/");
-          const starshipId = parts[parts.length - 1];
-          if (starshipId) {
-            // wait for this dispatch to finish before continuing
-            await dispatch(fetchStarshipById(starshipId));
-          }
-        }
-
-        setStarshipLoaded(true); // all done
-      } catch (err) {
-        console.error("film fetch failed", err);
-        setStarshipLoaded(true); // or handle error differently
-      }
-    })();
-  }, [character?.starships, dispatch]);
-
   return (
     <>
       {loadingStarship && (

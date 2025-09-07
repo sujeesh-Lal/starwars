@@ -3,6 +3,7 @@ import React from "react";
 import { Planet } from "@home/components/Planet";
 import { DataTable } from "primereact/datatable";
 import { Column } from "primereact/column";
+import { ProgressSpinner } from "primereact/progressspinner";
 
 interface CharacterTableProps {
   loading: boolean;
@@ -40,21 +41,27 @@ const CharacterTableComponent: React.FC<CharacterTableProps> = ({ loading, data,
   };
   return (
     <>
-      <div className="w-full" style={{ minHeight: "28em" }}>
-        <DataTable
-          loading={loading}
-          size="small"
-          value={data}
-          loadingIcon="pi pi-spin pi-spinner"
-          tableStyle={{ minWidth: "50rem" }}
-          emptyMessage={<span>No records found.</span>}
-        >
-          <Column field="name" header="Name"></Column>
-          <Column field="gender" header="Gender"></Column>
-          <Column field="homeworld" header="Home Planet" body={planetBodyTemplate}></Column>
-          <Column header="Actions" body={actionBodyTemplate}></Column>
-        </DataTable>
-      </div>
+      {loading ? (
+        <div data-testid="loading-wrapper" className="flex justify-center items-center h-64">
+          <ProgressSpinner />
+        </div>
+      ) : (
+        <div className="w-full" style={{ minHeight: "28em" }}>
+          <DataTable
+            size="small"
+            scrollable
+            value={data}
+            loadingIcon="pi pi-spin pi-spinner"
+            tableStyle={{ minWidth: "50rem" }}
+            emptyMessage={<span>No records found.</span>}
+          >
+            <Column field="name" header="Name"></Column>
+            <Column field="gender" header="Gender"></Column>
+            <Column field="homeworld" header="Home Planet" body={planetBodyTemplate}></Column>
+            <Column header="Actions" body={actionBodyTemplate}></Column>
+          </DataTable>
+        </div>
+      )}
     </>
   );
 };
