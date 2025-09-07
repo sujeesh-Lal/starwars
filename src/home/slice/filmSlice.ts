@@ -10,7 +10,6 @@ export const fetchFilmById = createAsyncThunk<FilmResponse, string, { state: Roo
   "films/fetchById",
   async (id) => {
     const response = await axiosInstance.get<FilmResponse>(`/api/films/${id}`);
-    console.log(response.data);
     return response.data;
   },
   {

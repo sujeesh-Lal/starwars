@@ -13,7 +13,6 @@ export const fetchStarshipById = createAsyncThunk<StarshipResponse, string, { st
     const response = await axiosInstance.get<StarshipResponse>(
       `https://www.swapi.tech/api/starships/${id}`,
     );
-    console.log(response.data);
     return response.data;
   },
   {

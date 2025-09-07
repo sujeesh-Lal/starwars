@@ -1,69 +1,113 @@
-# React + TypeScript + Vite
+# Star Wars Characters Explorer
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+## 📖 Project Overview
 
-Currently, two official plugins are available:
+Star Wars Characters Explorer is a **React + TypeScript** application to browse characters from the Star Wars universe.
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+- Browse all characters with **name, gender, and home planet**.
+- Search characters by name (Client-side filtering, providing quick results by searching cached data.).
+- View character details including **films and starships**.
+- Maintain a **favourites list** of characters.
+- Responsive design with **PrimeReact UI components**.
 
-## Expanding the ESLint configuration
+---
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
+## 🛠️ Tech Stack
 
-```js
-export default tseslint.config([
-  globalIgnores(["dist"]),
-  {
-    files: ["**/*.{ts,tsx}"],
-    extends: [
-      // Other configs...
+- **Frontend:** React, TypeScript, Vite
+- **UI Library:** PrimeReact, Tailwind CSS
+- **State Management:** Redux
+- **HTTP Requests:** Axios
+- **Testing:** Jest (unit tests), Cypress (E2E tests)
 
-      // Remove tseslint.configs.recommended and replace with this
-      ...tseslint.configs.recommendedTypeChecked,
-      // Alternatively, use this for stricter rules
-      ...tseslint.configs.strictTypeChecked,
-      // Optionally, add this for stylistic rules
-      ...tseslint.configs.stylisticTypeChecked,
+---
 
-      // Other configs...
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ["./tsconfig.node.json", "./tsconfig.app.json"],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-]);
+## 🌐 APIs Used
+
+| Resource  | Endpoint                                                          |
+| --------- | ----------------------------------------------------------------- |
+| Planets   | `https://www.swapi.tech/api/planets?page=1&limit=100`             |
+| People    | `https://www.swapi.tech/api/people?page=2&limit=10&expanded=true` |
+| Films     | `https://www.swapi.tech/api/films/1`                              |
+| Starships | `https://www.swapi.tech/api/starships/1`                          |
+
+---
+
+## ✨ Features
+
+[![Features](https://img.shields.io/badge/-Features-blue)](#features)
+
+### Character List
+
+- Display all characters with **name, gender, home planet**
+- **Pagination controls** for navigation
+- **Client-side search** to filter characters
+- Click a character to view **details page**
+
+### Character Details
+
+- Display **name, hair color, eye color, gender, home planet**
+- List **films** and **starships**
+- Add character to **favourites**
+
+### Favourites
+
+- View all **favourite characters** with **name, height, gender, home planet**
+- Remove characters from the list
+
+---
+
+## ⚡ Installation
+
+[![Installation](https://img.shields.io/badge/-Installation-green)](#installation)
+
+1. **Clone the repository:**
+
+```bash
+git clone https://github.com/sujeesh-Lal/starwars.git
+cd starwars
 ```
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
+2. **Install dependencies:**
 
-```js
-// eslint.config.js
-import reactX from "eslint-plugin-react-x";
-import reactDom from "eslint-plugin-react-dom";
+```bash
+npm install
+```
 
-export default tseslint.config([
-  globalIgnores(["dist"]),
-  {
-    files: ["**/*.{ts,tsx}"],
-    extends: [
-      // Other configs...
-      // Enable lint rules for React
-      reactX.configs["recommended-typescript"],
-      // Enable lint rules for React DOM
-      reactDom.configs.recommended,
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ["./tsconfig.node.json", "./tsconfig.app.json"],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-]);
+3. **Run the development server:**
+
+```bash
+npm run dev
+```
+
+Open http://localhost:5173/starwars/ in your browser to view the app.
+
+4. **Build for production:**
+
+```bash
+npm run build
+```
+
+## 🧪 Testing
+
+[![Testing](https://img.shields.io/badge/-Testing-orange)](#testing)
+
+### Unit Tests (Jest)
+
+Run all unit tests using Jest:
+
+```bash
+npm run test
+```
+
+## 🧪 End-to-End (E2E) Testing
+
+[![E2E Testing](https://img.shields.io/badge/-E2E%20Testing-orange)](#e2e-testing)
+
+This project uses **Cypress** for end-to-end testing.
+
+### Open Cypress Test Runner (Interactive Mode)
+
+```bash
+npm run cypress:open
 ```
