@@ -1,5 +1,5 @@
 import { configureStore } from "@reduxjs/toolkit";
-import peopleReducer, { fetchPeople, updatePeople } from "./peopleSlice";
+import peopleReducer, { fetchPeople, updatePeople } from "@home/slice/peopleSlice";
 import type { FlattenedPerson } from "@shared/types/peopleTypes";
 import axiosInstance from "@shared/services/axiosInstance";
 

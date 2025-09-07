@@ -14,6 +14,22 @@ jest.mock("@home/components/CharacterInfo", () => ({
   ),
 }));
 
+// Mock FilmList
+jest.mock("@home/components/FilmList", () => ({
+  __esModule: true,
+  default: ({ character }: { character: FlattenedPerson }) => (
+    <div data-testid="film-list">{character.name}</div>
+  ),
+}));
+
+// Mock StarshipList
+jest.mock("@home/components/StarshipList", () => ({
+  __esModule: true,
+  default: ({ character }: { character: FlattenedPerson }) => (
+    <div data-testid="starship-list">{character.name}</div>
+  ),
+}));
+
 // Mock react-router hooks
 const mockNavigate = jest.fn();
 const mockUseParams = jest.fn();
@@ -137,7 +153,7 @@ describe("CharacterDetails component", () => {
     expect(screen.getByText("No employee found")).toBeInTheDocument();
   });
 
-  it("calls navigate with correct state when back to list clicked", () => {
+  it("calls navigate with correct state when back is clicked", () => {
     render(
       <Provider store={store}>
         <BrowserRouter>
@@ -146,7 +162,7 @@ describe("CharacterDetails component", () => {
       </Provider>,
     );
 
-    const backButton = screen.getByText("back to list");
+    const backButton = screen.getByTestId("back-btn");
     fireEvent.click(backButton);
 
     expect(mockNavigate).toHaveBeenCalledWith(`/`, {

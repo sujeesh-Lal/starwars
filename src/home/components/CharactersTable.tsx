@@ -40,18 +40,21 @@ const CharacterTableComponent: React.FC<CharacterTableProps> = ({ loading, data,
   };
   return (
     <>
-      <DataTable
-        loading={loading}
-        size="small"
-        value={data}
-        tableStyle={{ minWidth: "50rem", minHeight: "28rem" }}
-      >
-        <Column field="id" header="Code"></Column>
-        <Column field="name" header="Name"></Column>
-        <Column field="gender" header="Gender"></Column>
-        <Column field="homeworld" header="Home Planet" body={planetBodyTemplate}></Column>
-        <Column header="Actions" body={actionBodyTemplate}></Column>
-      </DataTable>
+      <div className="w-full" style={{ minHeight: "28em" }}>
+        <DataTable
+          loading={loading}
+          size="small"
+          value={data}
+          loadingIcon="pi pi-spin pi-spinner"
+          tableStyle={{ minWidth: "50rem" }}
+          emptyMessage={<span>No records found.</span>}
+        >
+          <Column field="name" header="Name"></Column>
+          <Column field="gender" header="Gender"></Column>
+          <Column field="homeworld" header="Home Planet" body={planetBodyTemplate}></Column>
+          <Column header="Actions" body={actionBodyTemplate}></Column>
+        </DataTable>
+      </div>
     </>
   );
 };

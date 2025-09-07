@@ -5,8 +5,8 @@ import { useLocation, useNavigate, useParams } from "react-router-dom";
 import type { FlattenedPerson } from "@/shared/types/peopleTypes";
 import CharacterInfo from "@home/components/CharacterInfo";
 import { findCharacterById } from "@home/services/Characters";
-// import FilmList from "@home/components/FilmList";
-// import StarshipList from "@home/components/StarshipList";
+import FilmList from "@home/components/FilmList";
+import StarshipList from "@home/components/StarshipList";
 
 const CharacterDetails: React.FC = () => {
   const { id } = useParams<{ id: string }>();
@@ -36,18 +36,25 @@ const CharacterDetails: React.FC = () => {
 
   return (
     <div>
-      <div className="max-w-md rounded-2xl border border-gray-200 bg-white shadow-md hover:shadow-lg transition-shadow duration-200 p-5">
+      <div className="rounded-2xl border border-gray-200 bg-white shadow-md hover:shadow-lg transition-shadow duration-200 p-5">
         <CharacterInfo character={character} />
-
-        {/* <FilmList
-                character={character}
-            />
-            <StarshipList
-                character={character}
-            /> */}
+        <div className="flex">
+          <div className="w-1/2 bg-blue-200 p-4">
+            <FilmList character={character} />
+          </div>
+          <div className="w-1/2 bg-green-200 p-4">
+            <StarshipList character={character} />
+          </div>
+        </div>
       </div>
       <section className="mt-4">
-        <div onClick={backToList}>back to list</div>
+        <button
+          data-testid="back-btn"
+          onClick={backToList}
+          className="px-4 py-2 bg-blue-500 text-white font-medium rounded hover:bg-blue-600 focus:outline-none focus:ring-2 focus:ring-blue-400 focus:ring-opacity-50"
+        >
+          Back
+        </button>
       </section>
     </div>
   );

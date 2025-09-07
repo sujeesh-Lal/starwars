@@ -7,7 +7,7 @@ const HeaderComponent: React.FC = () => {
   const handleClick = (e: React.MouseEvent) => {
     const path = location.pathname;
     if (path === "/" || path === "/characters") {
-      e.preventDefault(); // This is now testable
+      e.preventDefault();
     }
   };
   return (

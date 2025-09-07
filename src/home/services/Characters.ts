@@ -27,6 +27,27 @@ export const findCharactersByText = (
   return result;
 };
 
+interface FavoriteFilter {
+  favorite: boolean;
+}
+
+export const findCharactersByKey = (
+  data: Record<string, FlattenedPerson[]>,
+  filter: FavoriteFilter,
+): FlattenedPerson[] => {
+  const result: FlattenedPerson[] = [];
+  for (const key of Object.keys(data)) {
+    const people = data[key];
+    for (const person of people) {
+      if (person.favorite === filter.favorite) {
+        result.push(person);
+      }
+    }
+  }
+
+  return result;
+};
+
 export const flattenPeoplesData = (data: PeopleListResponse): FlattenedPerson[] => {
   const results = data.results?.map((r) => {
     const p = r.properties;

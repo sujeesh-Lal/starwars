@@ -3,7 +3,8 @@ import {
   findCharactersByText,
   flattenPeoplesData,
   findCharacterLocation,
-} from "./Characters";
+  findCharactersByKey,
+} from "@home/services/Characters";
 import type { FlattenedPerson, PeopleListResponse } from "@/shared/types/peopleTypes";
 
 describe("Characters service functions", () => {
@@ -128,6 +129,50 @@ describe("Characters service functions", () => {
     it("returns null if character not found", () => {
       const result = findCharacterLocation(mockData, "99");
       expect(result).toBeNull();
+    });
+  });
+
+  describe("findCharactersByKey", () => {
+    const luke: FlattenedPerson = {
+      id: "1",
+      name: "Luke Skywalker",
+      favorite: true,
+    } as any;
+
+    const leia: FlattenedPerson = {
+      id: "2",
+      name: "Leia Organa",
+      favorite: false,
+    } as any;
+
+    const han: FlattenedPerson = {
+      id: "3",
+      name: "Han Solo",
+      favorite: true,
+    } as any;
+
+    const mockData: Record<string, FlattenedPerson[]> = {
+      page1: [luke, leia],
+      page2: [han],
+    };
+
+    it("returns only characters matching the favorite filter (true)", () => {
+      const result = findCharactersByKey(mockData, { favorite: true });
+      expect(result).toHaveLength(2);
+      expect(result.map((p) => p.name)).toEqual(
+        expect.arrayContaining(["Luke Skywalker", "Han Solo"]),
+      );
+    });
+
+    it("returns only characters matching the favorite filter (false)", () => {
+      const result = findCharactersByKey(mockData, { favorite: false });
+      expect(result).toHaveLength(1);
+      expect(result[0].name).toBe("Leia Organa");
+    });
+
+    it("returns an empty array when no matches", () => {
+      const result = findCharactersByKey({}, { favorite: true });
+      expect(result).toEqual([]);
     });
   });
 });

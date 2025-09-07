@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useCallback, useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import type { RootState, AppDispatch } from "@app/store";
 import { fetchPeople } from "@home/slice/peopleSlice";
@@ -43,11 +43,14 @@ const CharacterItems: React.FC = () => {
   const currentPage = first / rows + 1;
   const totalPages = Math.ceil(total_records / rows);
 
-  const handleClick = (id: string) => {
-    navigate(`characters/${id}`, {
-      state: { fromPage: page, search: search, firstRecord: first, currentRow: rows },
-    });
-  };
+  const handleClick = useCallback(
+    (id: string) => {
+      navigate(`characters/${id}`, {
+        state: { fromPage: page, search: search, firstRecord: first, currentRow: rows },
+      });
+    },
+    [navigate, page, search, first, rows],
+  );
 
   return (
     <div className="p-4">
