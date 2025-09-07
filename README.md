@@ -33,6 +33,38 @@ Star Wars Characters Explorer is a **React + TypeScript** application to browse 
 
 ---
 
+## 📂 Project Structure
+
+- **`src/`** – Global application setup
+  - **`app/`** – app folder
+    - **`store.ts`** – Configures the Redux store
+    - **`rootReducer.ts`** – Combines all feature slices
+
+  - **`assets/`** – Static assests
+    - **`fonts`** – Font files
+    - **`images`** – images, svg etc
+
+  - **`modules(home)/`** – Feature-based modules for better separation of concerns. In this case its home module
+    - **`components/`** – Generic components for this module
+    - **`pages/`** – Container components which acts as route
+    - **`services/`** – Request utilities and shared functions for particular module
+    - **`slice/`** – State, reducers, and actions for module for particular module
+    - **`hooks/`** – Typed Redux hooks for safer, cleaner code for particular module
+
+  - **`layouts/`** – Generic layout structures like header, footer etc
+
+  - **`shared/`** – Globally shared section
+    - **`components/`** – Generic components for this app
+    - **`services/`** – Global request utilities and shared functions
+    - **`types/`** – Global type definitions
+    - **`hooks/`** – Typed Redux hooks for safer, cleaner code for app
+
+  - **`styles/`** – Global styles, themes, typography, variables etc
+
+This layout makes it clear **where logic lives**, keeps related files close together, and supports **scalability** as your project grows.
+
+---
+
 ## ✨ Features
 
 [![Features](https://img.shields.io/badge/-Features-blue)](#features)
@@ -111,3 +143,57 @@ This project uses **Cypress** for end-to-end testing.
 ```bash
 npm run cypress:open
 ```
+
+## 🧹 Code Formatting with Prettier
+
+This project uses **[Prettier](https://prettier.io/)** to enforce a consistent code style across the codebase.
+
+The configuration file lives at the root of the project:
+
+```bash
+.prettierrc
+```
+
+Code can be formatted using the command
+
+```bash
+npm run format
+```
+
+## 🚀 CI/CD & Deployment
+
+### 🔄 GitHub Actions (Continuous Integration)
+
+This project includes a GitHub Actions workflow to automatically:
+
+- Install dependencies
+- Run tests
+- Build the production bundle
+
+The workflow triggers on:
+
+- Every pull request to `main`
+- Every push to `main`
+
+Key workflow steps:
+
+1. **Checkout code** – pulls the latest repository contents
+2. **Install dependencies** – uses a cached `node_modules` for faster builds
+3. **Run tests** – executes unit with Jest
+4. **Build** – compiles the React + Vite app for production
+
+The workflow file lives at:  
+`.github/workflows/main.yml`
+
+---
+
+### 🌐 Deployment
+
+The project is deployed automatically after a successful build on `main`.
+
+- **Hosting** – [Github Starwars](https://sujeesh-lal.github.io/starwars/)
+- **Branch** – Deployments are triggered from the `main` branch
+- **Build Command** – `npm run build`
+- **Output Directory** – `dist/`
+
+The project can be viewed https://sujeesh-lal.github.io/starwars/
