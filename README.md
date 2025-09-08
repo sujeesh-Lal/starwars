@@ -4,11 +4,16 @@
 
 Star Wars Characters Explorer is a **React + TypeScript** application to browse characters from the Star Wars universe.
 
-- Browse all characters with **name, gender, and home planet**.
+- List all characters with **name, gender, and home planet**.
 - Search characters by name (Client-side filtering, providing quick results by searching cached data.).
 - View character details including **films and starships**.
 - Maintain a **favourites list** of characters.
 - Responsive design with **PrimeReact UI components**.
+
+### 📝 Notes
+
+- **This project is a Single Page Application (SPA). Direct navigation to nested routes is not currently supported but can be enabled in future iterations with additional development.**
+- **The Edit feature is not yet available. Both the Edit and View buttons currently redirect to the Details page, where users can add or remove characters from the Favorites list.**
 
 ---
 
