@@ -60,6 +60,7 @@ const CharacterItems: React.FC = () => {
       <div className="mt-4 mb-4">
         <input
           type="search"
+          data-testid="search-input"
           value={search}
           onChange={(e) => setSearch(e.target.value)}
           placeholder="Search starwars characters"

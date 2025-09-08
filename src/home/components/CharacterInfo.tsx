@@ -21,6 +21,7 @@ const CharacterInfoComponent: React.FC<CharacterInfoProps> = ({ character }) => 
       <div className="mb-3 flex items-center justify-between">
         <h2 className="text-xl font-semibold text-gray-800">{character.name}</h2>
         <button
+          data-testid="toggle-favorite-btn"
           onClick={toggleFavourite}
           className={
             character.favorite

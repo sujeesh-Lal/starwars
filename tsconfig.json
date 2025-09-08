@@ -4,7 +4,7 @@
     "allowSyntheticDefaultImports": true,
     "jsx": "react-jsx", // 👈 also important for React
     "moduleResolution": "node",
-    "types": ["jest", "@testing-library/jest-dom"],
+    "types": ["jest", "@testing-library/jest-dom", "cypress"],
     "baseUrl": ".",
     "paths": {
       "@/*": ["src/*"],

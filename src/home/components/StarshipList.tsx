@@ -24,7 +24,7 @@ const StarshipList: React.FC<StarshipListProps> = ({ character }) => {
   return (
     <>
       {loadingStarship && (
-        <div className="flex">
+        <div className="flex" data-testid="starship-loading">
           <span className="flex items-center">Loading Starships ...</span>
           <ProgressSpinner
             style={{ width: "50px", height: "50px" }}
@@ -37,7 +37,7 @@ const StarshipList: React.FC<StarshipListProps> = ({ character }) => {
       {errorStarship && <p className="text-red-500">{errorStarship}</p>}
       {!character?.starships?.length && (
         <>
-          <div className="mb-3">
+          <div className="mb-3" data-testid="starship-no-items">
             <h3 className="text-sm font-semibold text-gray-700 mb-1">Starships:</h3>
             <div className="list-disc list-inside text-sm text-gray-900">
               No starships available
@@ -46,7 +46,7 @@ const StarshipList: React.FC<StarshipListProps> = ({ character }) => {
         </>
       )}
       {starshipLoaded && (
-        <div className="mb-3">
+        <div className="mb-3" data-testid="starship-list">
           <h3 className="text-sm font-semibold text-gray-700 mb-1">Starships:</h3>
           <ul className="list-disc list-inside text-sm text-gray-600">
             {starshipModels?.map((starship) => (

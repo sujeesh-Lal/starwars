@@ -48,6 +48,8 @@ const CharacterTableComponent: React.FC<CharacterTableProps> = ({ loading, data,
       ) : (
         <div className="w-full" style={{ minHeight: "28em" }}>
           <DataTable
+            className="characters-list-table"
+            data-testid="characters-list-table"
             size="small"
             scrollable
             value={data}

@@ -3,7 +3,7 @@ import CharacterItems from "@/home/components/CharacterItems";
 
 const Characters: React.FC = () => {
   return (
-    <div className="p-4">
+    <div className="p-4" data-testid="character-card">
       <CharacterItems />
     </div>
   );

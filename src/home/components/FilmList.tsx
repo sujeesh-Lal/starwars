@@ -22,7 +22,7 @@ const FilmList: React.FC<FilmListProps> = ({ character }) => {
   return (
     <>
       {loadingFilm && (
-        <div className="flex">
+        <div className="flex" data-testid="films-loading">
           <span className="flex items-center">Loading Films ...</span>
           <ProgressSpinner
             style={{ width: "50px", height: "50px" }}
@@ -36,14 +36,14 @@ const FilmList: React.FC<FilmListProps> = ({ character }) => {
       {errorFilm && <p className="text-red-500">{errorFilm}</p>}
 
       {!character?.films?.length && (
-        <div className="mb-3">
+        <div className="mb-3" data-testid="films-no-items">
           <h3 className="text-sm font-semibold text-gray-700 mb-1">Films:</h3>
           <div className="list-disc list-inside text-sm text-gray-900">No films available</div>
         </div>
       )}
 
       {filmsLoaded && (
-        <div className="mb-3">
+        <div className="mb-3" data-testid="films-list">
           <h3 className="text-sm font-semibold text-gray-700 mb-1">Films:</h3>
           <ul className="list-disc list-inside text-sm text-gray-600">
             {titles?.map((film) => (

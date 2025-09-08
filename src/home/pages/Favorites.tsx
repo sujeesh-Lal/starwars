@@ -47,7 +47,7 @@ const Favorites: React.FC = () => {
     <>
       <div className="mt-4 mb-4">
         {favoritesData && (
-          <div className="w-full" style={{ minHeight: "28em" }}>
+          <div className="w-full" style={{ minHeight: "28em" }} data-testid="favorites-table">
             <DataTable
               scrollable
               loadingIcon="pi pi-spin pi-spinner"
