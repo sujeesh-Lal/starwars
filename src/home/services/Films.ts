@@ -6,8 +6,8 @@ export const getFilmTitles = (
   films: Film[],
 ): Film[] | undefined => {
   return character?.films
-    .map((filmUrl: string) => films?.find((f) => f.url === filmUrl)) // find matching film
-    .filter((f): f is Film => f !== undefined) // filter out undefined
+    .map((filmUrl: string) => films?.find((f) => f.url === filmUrl))
+    .filter((f): f is Film => f !== undefined)
     .map((f: Film) => f);
 };
 

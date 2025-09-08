@@ -24,7 +24,6 @@ describe("planetsLoader", () => {
   it("returns planetItems when fetchPlanets succeeds", async () => {
     const mockPlanets = [{ name: "Tatooine" }];
 
-    // Cast dispatch to jest.MockedFunction<any> to bypass type issues
     (mockStore.dispatch as jest.MockedFunction<any>).mockResolvedValue({
       type: fetchPlanets.fulfilled.type,
       payload: mockPlanets,

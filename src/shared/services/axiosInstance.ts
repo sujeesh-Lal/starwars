@@ -8,7 +8,6 @@ const axiosInstance = axios.create({
   },
 });
 
-// Optional: request interceptor
 axiosInstance.interceptors.request.use(
   (config) => {
     // e.g., attach auth token

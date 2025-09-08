@@ -6,7 +6,6 @@ import peopleReducer from "@home/slice/peopleSlice";
 import { BrowserRouter } from "react-router-dom";
 import type { FlattenedPerson } from "@/shared/types/peopleTypes";
 
-// Mock CharacterInfo
 jest.mock("@home/components/CharacterInfo", () => ({
   __esModule: true,
   default: ({ character }: { character: FlattenedPerson }) => (
@@ -14,7 +13,6 @@ jest.mock("@home/components/CharacterInfo", () => ({
   ),
 }));
 
-// Mock FilmList
 jest.mock("@home/components/FilmList", () => ({
   __esModule: true,
   default: ({ character }: { character: FlattenedPerson }) => (
@@ -22,7 +20,6 @@ jest.mock("@home/components/FilmList", () => ({
   ),
 }));
 
-// Mock StarshipList
 jest.mock("@home/components/StarshipList", () => ({
   __esModule: true,
   default: ({ character }: { character: FlattenedPerson }) => (
@@ -30,7 +27,6 @@ jest.mock("@home/components/StarshipList", () => ({
   ),
 }));
 
-// Mock react-router hooks
 const mockNavigate = jest.fn();
 const mockUseParams = jest.fn();
 const mockUseLocation = jest.fn();

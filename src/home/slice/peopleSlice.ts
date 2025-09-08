@@ -10,7 +10,6 @@ import { createSlice, createAsyncThunk, type PayloadAction } from "@reduxjs/tool
 import axiosInstance from "@shared/services/axiosInstance";
 import { findCharacterLocation, flattenPeoplesData } from "@home/services/Characters";
 
-// Async thunk
 export const fetchPeople = createAsyncThunk<
   FetchPeopleReturnParams, // Return type
   FetchPeopleParams, // Parameter type

@@ -28,7 +28,6 @@ export function useFetchItems({
         }
         setLoaded(true);
       } catch (err) {
-        console.error("Fetch failed", err);
         setLoaded(true);
       }
     })();

@@ -29,7 +29,6 @@ const CharacterItems: React.FC = () => {
   const [first, setFirst] = useState(initialFirst);
   const [rows, setRows] = useState(initialRow);
 
-  // load whenever page changes
   useEffect(() => {
     dispatch(fetchPeople({ page: page.toString() }));
   }, [page, dispatch]);

@@ -1,4 +1,3 @@
-// StarshipList.test.tsx
 import { render, screen } from "@testing-library/react";
 import StarshipList from "./StarshipList";
 import { Provider } from "react-redux";
@@ -10,7 +9,6 @@ const starshipReducer = (
   state: StarshipState = { starshipItems: [], loadingStarship: false, errorStarship: null },
 ): StarshipState => state;
 
-// --- mocks ---
 jest.mock("@home/slice/starshipSlice", () => ({
   fetchStarshipById: (id: string) => ({ type: "starships/fetchStarshipById", meta: { id } }),
 }));
@@ -27,7 +25,6 @@ function renderWithStore(state: StarshipState, character: FlattenedPerson) {
   );
 }
 
-// --- test data ---
 const mockCharacter: FlattenedPerson = {
   id: "1",
   name: "Luke Skywalker",

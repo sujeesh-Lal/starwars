@@ -53,7 +53,6 @@ describe("CharacterTable component", () => {
 
     render(<CharacterTable loading={false} data={mockData} handleClick={handleClick} />);
 
-    // PrimeReact DataTable renders spans, so let's query spans with class
     const editSpans = screen.getAllByText((content, element) => {
       if (content) {
       }
@@ -66,7 +65,6 @@ describe("CharacterTable component", () => {
       return !!element && element.className.includes("pi-eye");
     });
 
-    // Click first edit and view buttons
     fireEvent.click(editSpans[0]);
     fireEvent.click(viewSpans[0]);
 
@@ -78,6 +76,5 @@ describe("CharacterTable component", () => {
     render(<CharacterTable loading={true} data={[]} handleClick={jest.fn()} />);
     const loadingWrapper = screen.getByTestId("loading-wrapper");
     expect(loadingWrapper).toBeInTheDocument();
-    // expect(document.querySelector("#loading-wrapper")).toBeInTheDocument();
   });
 });

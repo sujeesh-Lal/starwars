@@ -9,11 +9,10 @@ describe("axiosInstance", () => {
   it("request interceptor should pass config correctly", async () => {
     const config = { headers: {} };
 
-    // Access the first request interceptor's fulfilled function
     const requestInterceptor = (axiosInstance.interceptors.request as any).handlers[0].fulfilled;
     const result = await requestInterceptor(config);
 
-    expect(result).toBe(config); // should return the same config
+    expect(result).toBe(config);
   });
 
   it("request interceptor should reject errors", async () => {
@@ -29,7 +28,7 @@ describe("axiosInstance", () => {
     const responseInterceptor = (axiosInstance.interceptors.response as any).handlers[0].fulfilled;
     const result = await responseInterceptor(response);
 
-    expect(result).toBe(response); // should return the same response
+    expect(result).toBe(response);
   });
 
   it("response interceptor should reject errors", async () => {

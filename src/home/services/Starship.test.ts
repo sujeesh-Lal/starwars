@@ -18,7 +18,6 @@ describe("flattenStarshipData", () => {
 
     const result = flattenStarshipData(mockResponse);
 
-    // Make sure the returned object matches the Starship shape
     expect(result).toEqual<Starship>({
       id: "99",
       name: "Millennium Falcon",
@@ -50,7 +49,7 @@ describe("getStarshipModels", () => {
     const character: FlattenedPerson = {
       id: "c1",
       name: "Leia",
-      starships: ["url1", "url3"], // url3 doesn't exist in starships
+      starships: ["url1", "url3"],
     } as any;
 
     const result = getStarshipModels(character, starships);

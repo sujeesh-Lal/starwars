@@ -2,7 +2,6 @@ import { render, screen, fireEvent } from "@testing-library/react";
 import { MemoryRouter } from "react-router-dom"; // provides router context for useNavigate
 import NotFound from "@shared/components/NotFound";
 
-// Mock useNavigate
 const mockedNavigate = jest.fn();
 jest.mock("react-router-dom", () => ({
   ...jest.requireActual("react-router-dom"),
@@ -11,7 +10,7 @@ jest.mock("react-router-dom", () => ({
 
 describe("NotFound component", () => {
   beforeEach(() => {
-    mockedNavigate.mockClear(); // clear previous calls
+    mockedNavigate.mockClear();
   });
 
   it("renders 404 text and Go Home button", () => {

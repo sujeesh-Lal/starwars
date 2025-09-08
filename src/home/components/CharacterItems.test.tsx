@@ -17,7 +17,6 @@ const peopleReducer = (
   state: PeopleDataState = { data: {}, loadingPeople: false },
 ): PeopleDataState => state;
 
-// Mock CharacterTable and CharacterSearch
 jest.mock("./CharactersTable", () => ({
   __esModule: true,
   default: ({
@@ -45,7 +44,6 @@ jest.mock("@home/components/CharacterSearch", () => ({
   ),
 }));
 
-// Mock fetchPeople thunk to prevent real API calls
 jest.mock("@home/slice/peopleSlice", () => {
   const originalModule = jest.requireActual("@home/slice/peopleSlice");
   return {
@@ -120,7 +118,6 @@ describe("CharacterItems component", () => {
   });
 
   it("dispatches fetchPeople on mount", () => {
-    // const store = renderWithStore();
     expect(fetchPeople).toHaveBeenCalledWith({ page: "1" });
   });
 
@@ -141,11 +138,9 @@ describe("CharacterItems component", () => {
         total_records: 20,
       },
     });
-    // PrimeReact paginator adds buttons dynamically; for simplicity, we simulate page change by calling onPageChange manually
-    // Or you can query by class ".p-paginator-next" if you import styles
   });
 
-  describe("handleClick coverage", () => {
+  describe("handleClick", () => {
     const mockData: Record<string, FlattenedPerson[]> = {
       "1": [
         {
@@ -195,7 +190,7 @@ describe("CharacterItems component", () => {
     });
   });
 
-  describe("CharacterItems onPageChange coverage", () => {
+  describe("CharacterItems onPageChange", () => {
     const mockData: Record<string, FlattenedPerson[]> = {
       "1": [
         {
@@ -250,15 +245,10 @@ describe("CharacterItems component", () => {
         </Provider>,
       );
 
-      // PrimeReact Paginator renders "NextPageLink" button with class "p-paginator-next"
       const nextButton = await screen.findByRole("button", { name: /next/i });
 
-      // Simulate clicking the next page
       fireEvent.click(nextButton);
 
-      // Expect the component state to update: page should be 2
-      // Since fetchPeople is dispatched in useEffect, we can spy on dispatch
-      // Or just ensure that the table now shows data from page 2
       expect(screen.getByText("C-3PO")).toBeInTheDocument();
     });
   });

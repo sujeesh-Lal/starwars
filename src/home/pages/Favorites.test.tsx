@@ -6,12 +6,10 @@ import { updatePeople } from "../slice/peopleSlice";
 import type { FlattenedPerson, PeopleDataState } from "@/shared/types/peopleTypes";
 import { initialState as peopleInitialState } from "@shared/types/peopleTypes";
 
-// stub out <Planet/> to avoid network calls / SWAPI logic
 jest.mock("../components/Planet", () => ({
   Planet: () => <span>PlanetName</span>,
 }));
 
-// spy on updatePeople action creator (so we can check dispatch)
 jest.mock("../slice/peopleSlice", () => {
   const actual = jest.requireActual("../slice/peopleSlice");
   return {

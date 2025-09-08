@@ -7,7 +7,6 @@ import peopleReducer from "@home/slice/peopleSlice";
 import type { FlattenedPerson } from "@/shared/types/peopleTypes";
 import type { RootState } from "@/app/store";
 
-// Mock Planet component
 jest.mock("@home/components/Planet", () => ({
   Planet: ({ planetUrl }: { planetUrl: string }) => <span data-testid="planet">{planetUrl}</span>,
 }));
@@ -42,7 +41,7 @@ describe("CharacterInfo component", () => {
           total_pages: 1,
           next: null,
           previous: null,
-          pagesLoaded: ["1"], // optional, but can help simulate loaded pages
+          pagesLoaded: ["1"],
         },
       },
     });
@@ -82,7 +81,6 @@ describe("CharacterInfo component", () => {
     const button = screen.getByText("★ Add to Favourites");
     fireEvent.click(button);
 
-    // check store updated
     const state: RootState = store.getState() as RootState;
     const updatedCharacter = state.people.data["1"][0];
     expect(updatedCharacter.favorite).toBe(true);

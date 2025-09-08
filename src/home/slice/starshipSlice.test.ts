@@ -3,7 +3,6 @@ import starshipReducer, { fetchStarshipById } from "@home/slice/starshipSlice";
 import axiosInstance from "@shared/services/axiosInstance";
 import type { StarshipResponse } from "@/shared/types/starshipTypes";
 
-// ─── Mock flattenStarshipData so the test doesn't care about its internals ───
 jest.mock("@home/services/Starship", () => ({
   flattenStarshipData: (data: StarshipResponse) => ({
     id: data.result.uid,
@@ -11,7 +10,6 @@ jest.mock("@home/services/Starship", () => ({
   }),
 }));
 
-// ─── Mock axios ───
 jest.mock("@shared/services/axiosInstance");
 const mockedAxios = axiosInstance as jest.Mocked<typeof axiosInstance>;
 
@@ -69,7 +67,6 @@ describe("starshipSlice", () => {
 
     await store.dispatch(fetchStarshipById("99") as any);
 
-    // no HTTP call because condition returned false
     expect(axiosInstance.get).not.toHaveBeenCalled();
   });
 

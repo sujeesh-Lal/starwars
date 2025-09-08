@@ -4,7 +4,6 @@ import { configureStore } from "@reduxjs/toolkit";
 import { Provider } from "react-redux";
 import type { FlattenedPerson } from "@/shared/types/peopleTypes";
 
-// Mock CharacterTable
 jest.mock("./CharactersTable", () => ({
   __esModule: true,
   default: ({

@@ -5,7 +5,6 @@ import axiosInstance from "@shared/services/axiosInstance";
 import { initialState, type FilmResponse } from "@shared/types/filmTypes";
 import { flattenFilmData } from "@home/services/Films";
 
-// Thunk: will check state first
 export const fetchFilmById = createAsyncThunk<FilmResponse, string, { state: RootState }>(
   "films/fetchById",
   async (id) => {

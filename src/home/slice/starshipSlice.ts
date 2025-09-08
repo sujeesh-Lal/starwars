@@ -6,7 +6,6 @@ import axiosInstance from "@shared/services/axiosInstance";
 import { initialState, type StarshipResponse } from "@/shared/types/starshipTypes";
 import { flattenStarshipData } from "@home/services/Starship";
 
-// Thunk: will check state first
 export const fetchStarshipById = createAsyncThunk<StarshipResponse, string, { state: RootState }>(
   "startships/fetchById",
   async (id) => {
@@ -19,7 +18,6 @@ export const fetchStarshipById = createAsyncThunk<StarshipResponse, string, { st
     condition: (id, { getState }) => {
       const state = getState();
       const already = state.starships.starshipItems.find((e) => e.id === id);
-      // if already loaded, skip the thunk entirely
       return !already;
     },
   },

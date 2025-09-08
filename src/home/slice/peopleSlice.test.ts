@@ -32,11 +32,7 @@ describe("peopleSlice", () => {
   };
 
   beforeEach(() => {
-    store = configureStore({
-      reducer: {
-        people: peopleReducer,
-      },
-    });
+    store = setupStore();
   });
 
   it("should return the initial state", () => {
@@ -48,7 +44,6 @@ describe("peopleSlice", () => {
   });
 
   it("should handle updatePeople", () => {
-    // manually set a page with one person
     store.dispatch({
       type: fetchPeople.fulfilled.type,
       payload: {
@@ -76,11 +71,10 @@ describe("peopleSlice", () => {
         total_records: 1,
         next: null,
         previous: null,
-        results: [], // API shape doesn't matter because flattenPeoplesData is mocked
+        results: [],
       },
     };
 
-    // mock axios get
     mockedAxios.get.mockResolvedValueOnce(mockResponse as any);
 
     const result = await store.dispatch(fetchPeople({ page: "1" }) as any);
