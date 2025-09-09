@@ -172,6 +172,7 @@ npm run format
 This project includes a GitHub Actions workflow to automatically:
 
 - Install dependencies
+- Run audits (Production)
 - Run tests
 - Build the production bundle
 
